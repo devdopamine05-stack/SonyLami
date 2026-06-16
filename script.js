@@ -468,3 +468,94 @@ function makeCarousel(trackId, opts = {}) {
 // ── Init carousels after DOM ready ────────────────────
 makeCarousel('reviewsTrack',  { speed: 0.5, pause: 4500 });
 makeCarousel('studentsTrack', { speed: 0.55, pause: 4500 });
+
+
+// ═══════════════════════════════════════════════════════
+//  ENHANCEMENTS v8
+// ═══════════════════════════════════════════════════════
+
+// ── 1. Scroll progress bar ──────────────────────────────
+const progressBar = document.getElementById('scrollProgress');
+const backToTopBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+    const scrolled  = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct       = docHeight > 0 ? (scrolled / docHeight) * 100 : 0;
+
+    // Progress bar
+    if (progressBar) progressBar.style.width = pct + '%';
+
+    // Back to top: show after 300px
+    if (backToTopBtn) {
+        backToTopBtn.classList.toggle('visible', scrolled > 300);
+    }
+}, { passive: true });
+
+// ── 2. Back to top button ──────────────────────────────
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// ── 3. Counter animation ───────────────────────────────
+// Fires once when the about__stats section enters viewport
+(function () {
+    const counters = document.querySelectorAll('.counter[data-target]');
+    if (!counters.length) return;
+
+    let fired = false;
+
+    const obs = new IntersectionObserver((entries) => {
+        if (fired) return;
+        const visible = entries.some(e => e.isIntersecting);
+        if (!visible) return;
+
+        fired = true;
+        obs.disconnect();
+
+        counters.forEach(el => {
+            const target = parseInt(el.dataset.target, 10);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1600; // ms
+            const startTime = performance.now();
+            const startVal  = 0;
+
+            function step(now) {
+                const elapsed  = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(startVal + eased * (target - startVal));
+                el.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(step);
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => obs.observe(el));
+})();
+
+// ── 4. Card accordion (course "Что включено") ──────────
+document.querySelectorAll('.card-accordion__toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const acc    = btn.closest('.card-accordion');
+        const isOpen = acc.classList.contains('open');
+
+        // Close all in this card
+        btn.closest('.course-card')
+            .querySelectorAll('.card-accordion.open')
+            .forEach(a => {
+                a.classList.remove('open');
+                a.querySelector('.card-accordion__toggle').setAttribute('aria-expanded', 'false');
+            });
+
+        if (!isOpen) {
+            acc.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+});

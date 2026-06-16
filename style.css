@@ -1153,8 +1153,78 @@ button { font-family: inherit; }
     to   { transform: rotate(360deg); }
 }
 
-/* === MOBILE MENU === */
-@media (max-width: 768px) {
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — Mobile-first, all breakpoints
+   xs: <480   sm: 480-767   md: 768-1023   lg: 1024+
+═══════════════════════════════════════════════════════ */
+
+/* ── NAV burger (hidden on desktop) ── */
+.nav__burger { display: none; }
+
+/* ── Tablet & below: stack courses ── */
+@media (max-width: 1100px) {
+    .courses__grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .course-card--featured {
+        grid-column: 1 / -1;
+        transform: none;
+        max-width: 440px;
+        margin: 0 auto;
+    }
+    .course-card--featured:hover { transform: translateY(-6px); }
+}
+
+@media (max-width: 960px) {
+    /* About: stack */
+    .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about__img-col { max-width: 480px; margin: 0 auto; width: 100%; }
+    .about__frame img { height: 380px; }
+    .about__label { right: 0; }
+
+    /* How: stack */
+    .how__grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    /* Courses: single column */
+    .courses__grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+    .course-card--featured { grid-column: auto; max-width: 100%; }
+
+    /* FAQ: stack */
+    .faq__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* Booking: stack */
+    .booking__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* Reviews carousel card width */
+    #reviewsTrack .review-card {
+        flex: 0 0 340px;
+        min-width: 340px;
+    }
+}
+
+/* ── Mobile nav ── */
+@media (max-width: 860px) {
+    .nav__burger { display: flex; }
+
     .nav__links {
         display: none;
         position: fixed;
@@ -1162,53 +1232,165 @@ button { font-family: inherit; }
         left: 0; right: 0;
         background: rgba(247,242,236,0.97);
         backdrop-filter: blur(16px);
-        padding: 16px 24px 28px;
+        -webkit-backdrop-filter: blur(16px);
+        padding: 8px 24px 24px;
         flex-direction: column;
         gap: 0;
         border-bottom: 1px solid var(--border);
         box-shadow: 0 8px 30px rgba(28,20,16,0.12);
+        z-index: 199;
     }
     .nav__links.open { display: flex; }
     .nav__links li { border-bottom: 1px solid var(--border); }
-    .nav__links a { display: block; padding: 14px 0; color: var(--espresso) !important; font-size: 0.95rem !important; }
-    .nav__links a::after { display: none; }
-    .nav__links .nav__cta { display: block; text-align: center; margin-top: 12px; border-radius: 2px; border: none; }
-    .nav__burger { display: flex; }
+    .nav__links li:last-child { border-bottom: none; }
+    .nav__links a {
+        display: block;
+        padding: 14px 0;
+        color: var(--espresso) !important;
+        font-size: 1rem !important;
+        letter-spacing: 0.03em;
+    }
+    .nav__links a::after { display: none !important; }
+    .nav__links .nav__cta {
+        display: block;
+        text-align: center;
+        margin-top: 12px;
+        border-radius: 2px;
+        border: none;
+        padding: 13px 22px;
+    }
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 1024px) {
-    .courses__grid,
-    .reviews__grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
-    .course-card--featured { transform: none; }
-    .course-card--featured:hover { transform: translateY(-6px); }
-    .portfolio__grid { grid-template-columns: repeat(2,1fr); }
-}
-@media (max-width: 900px) {
-    .about__grid,
-    .faq__inner,
-    .booking__inner { grid-template-columns: 1fr; }
-    .how__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-    .about__label { right: 0; }
-}
-@media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero__right { order: -1; padding: 80px 24px 40px; min-height: 65vw; }
-    .hero__img { height: 65vw; }
-    .hero__left { padding: 40px 24px 70px; }
+/* ── Hero: mobile ── */
+@media (max-width: 860px) {
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    /* Photo on top */
+    .hero__right {
+        order: -1;
+        padding: 80px 20px 36px;
+        min-height: auto;
+    }
+    .hero__img-wrap { max-width: 340px; margin: 0 auto; }
+    .hero__img { height: 56vw; min-height: 240px; max-height: 360px; }
+    .hero__badge {
+        width: 70px; height: 70px;
+        bottom: -12px; left: -8px;
+    }
+    .hero__badge-num { font-size: 1.2rem; }
+    .hero__badge-text { font-size: 0.55rem; }
     .hero__float { display: none; }
-    .hero__badge { width: 74px; height: 74px; bottom: -10px; left: -6px; }
-    .hero__badge-num { font-size: 1.3rem; }
-    .portfolio__grid { grid-template-columns: 1fr; }
-    .footer__inner { flex-direction: column; text-align: center; align-items: center; }
+    .hero__img-glow { display: none; }
+
+    .hero__left {
+        padding: 36px 20px 56px;
+        text-align: center;
+        align-items: center;
+    }
+    .hero__eyebrow-wrap { justify-content: center; }
+    .hero__title { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+    .hero__sub { font-size: 0.95rem; max-width: 100%; }
+    .hero__actions { justify-content: center; flex-direction: column; align-items: center; gap: 12px; }
+    .hero__actions .btn { width: 100%; max-width: 300px; }
+    .hero__scroll-hint { display: none; }
+}
+
+/* ── About stats: wrap on small ── */
+@media (max-width: 480px) {
+    .about__stats { gap: 20px; flex-wrap: wrap; }
+    .about__stat { min-width: 80px; }
+    .about__frame img { height: 280px; }
+}
+
+/* ── How steps: smaller on mobile ── */
+@media (max-width: 520px) {
+    .how__step { padding: 24px 20px; }
+}
+
+/* ── Students carousel on mobile ── */
+@media (max-width: 860px) {
+    .sw-carousel__track .sw-item {
+        flex: 0 0 200px;
+        min-width: 200px;
+    }
+}
+@media (max-width: 480px) {
+    .sw-carousel__track .sw-item {
+        flex: 0 0 56vw;
+        min-width: 56vw;
+    }
+}
+
+/* ── Review cards on mobile ── */
+@media (max-width: 600px) {
+    #reviewsTrack .review-card {
+        flex: 0 0 82vw;
+        min-width: 82vw;
+    }
+}
+
+/* ── Booking form ── */
+@media (max-width: 520px) {
+    .booking__form-wrap { padding: 24px 16px; }
+    .btn { padding: 14px 20px; font-size: 0.75rem; }
+}
+
+/* ── Footer: stack on mobile ── */
+@media (max-width: 700px) {
+    .footer__inner {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 20px;
+    }
+    .footer__links { justify-content: center; }
     .footer__copy { order: 3; }
 }
 
+/* ── Section padding: tighten on mobile ── */
+@media (max-width: 600px) {
+    section, .about, .how, .students, .courses, .reviews, .faq, .booking {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .container { padding: 0 16px; }
+    .section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+    .faq__q { font-size: 0.88rem; }
+}
+
+/* ── FAQ layout ── */
+@media (max-width: 600px) {
+    .faq__left { text-align: center; }
+    .faq__left .btn { width: 100%; }
+}
+
+/* ── Course card: compact ── */
+@media (max-width: 420px) {
+    .course-card { padding: 24px 18px; }
+    .price-main { font-size: 1.6rem; }
+}
+
+/* ── Carousel edge fade: narrower on small ── */
+@media (max-width: 600px) {
+    .carousel {
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+    }
+}
+
+/* ── Cursor glow: hide on touch ── */
+@media (hover: none) {
+    .cursor-glow { display: none; }
+}
+
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
     .strip__inner { animation: none; }
     .hero__float { animation: none; }
     .hero__scroll-line::after { animation: none; }
-    [data-reveal] { opacity: 1; transform: none; transition: none; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
     * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 
@@ -1493,4 +1675,237 @@ button { font-family: inherit; }
 @media (max-width: 480px) {
     #reviewsTrack .review-card { flex: 0 0 82vw; min-width: 82vw; }
     .sw-carousel__track .sw-item { flex: 0 0 56vw; min-width: 56vw; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ENHANCEMENTS v8
+═══════════════════════════════════════════════════════ */
+
+/* ── 1. Scroll progress bar ── */
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(to right, var(--rose), var(--blush));
+    z-index: 9999;
+    transition: width 0.1s linear;
+    pointer-events: none;
+}
+
+/* ── 2. Back to top button ── */
+.back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--espresso);
+    color: var(--cream);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    box-shadow: 0 4px 20px rgba(28,20,16,0.25);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background 0.2s;
+    pointer-events: none;
+}
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+.back-to-top:hover {
+    background: var(--rose);
+    transform: translateY(-2px);
+}
+
+/* ── 3. Instagram nav link ── */
+.nav__ig {
+    color: rgba(247,242,236,0.75) !important;
+    transition: color 0.25s !important;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+}
+.nav.scrolled .nav__ig { color: var(--muted) !important; }
+.nav__ig:hover { color: var(--cream) !important; }
+.nav.scrolled .nav__ig:hover { color: var(--espresso) !important; }
+
+/* ── 4. Counter numbers (animated via JS) ── */
+.about__stat-num.counter {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── 5. Card accordion ── */
+.card-accordion { margin-bottom: 20px; }
+
+.card-accordion__toggle {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r);
+    color: rgba(247,242,236,0.65);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    margin-bottom: 0;
+}
+.card-accordion__toggle:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--cream);
+    border-color: rgba(196,133,106,0.35);
+}
+.card-accordion.open .card-accordion__toggle {
+    color: var(--cream);
+    border-color: rgba(196,133,106,0.35);
+    border-radius: var(--r) var(--r) 0 0;
+    border-bottom: none;
+}
+
+.card-accordion__icon {
+    font-size: 1.1rem;
+    font-weight: 300;
+    transition: transform 0.3s var(--ease);
+    line-height: 1;
+    flex-shrink: 0;
+}
+.card-accordion.open .card-accordion__icon { transform: rotate(45deg); }
+
+/* The list inside accordion */
+.card-accordion__body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s var(--ease), padding 0.2s;
+    border: 1px solid rgba(196,133,106,0.35);
+    border-top: none;
+    border-radius: 0 0 var(--r) var(--r);
+    padding: 0 4px;
+}
+.card-accordion.open .card-accordion__body {
+    max-height: 500px;
+    padding: 4px 4px 8px;
+}
+/* Featured card accordion adjustments */
+.course-card--featured .card-accordion__toggle {
+    background: rgba(28,20,16,0.2);
+    border-color: rgba(28,20,16,0.25);
+    color: rgba(255,255,255,0.8);
+}
+.course-card--featured .card-accordion__toggle:hover,
+.course-card--featured .card-accordion.open .card-accordion__toggle {
+    background: rgba(28,20,16,0.35);
+    color: var(--white);
+    border-color: rgba(28,20,16,0.4);
+}
+.course-card--featured .card-accordion__body {
+    border-color: rgba(28,20,16,0.3);
+}
+
+/* ── 6. Slots badge ── */
+.slots-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(196,133,106,0.12);
+    border: 1px solid rgba(196,133,106,0.3);
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 0.82rem;
+    color: rgba(247,242,236,0.75);
+    margin-bottom: 16px;
+}
+.slots-badge strong { color: var(--cream); }
+.slots-badge__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(74,222,128,0.5);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+    50%       { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}
+
+/* ── Mobile tweaks for new elements ── */
+@media (max-width: 860px) {
+    .back-to-top { bottom: 20px; right: 16px; width: 42px; height: 42px; }
+    .slots-badge { font-size: 0.78rem; }
+}
+@media (max-width: 600px) {
+    .nav__ig { display: none; } /* save space on tiny screens, still in footer */
+}
+
+/* ── Instagram icon in nav ── */
+.nav__ig {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(247,242,236,0.25);
+    color: rgba(247,242,236,0.7) !important;
+    transition: border-color 0.25s, color 0.25s, background 0.25s !important;
+    flex-shrink: 0;
+}
+.nav__ig:hover {
+    border-color: var(--rose) !important;
+    color: var(--cream) !important;
+    background: rgba(196,133,106,0.12) !important;
+}
+.nav__ig::after { display: none !important; }
+
+.nav.scrolled .nav__ig {
+    border-color: var(--border) !important;
+    color: var(--muted) !important;
+}
+.nav.scrolled .nav__ig:hover {
+    border-color: var(--rose) !important;
+    color: var(--rose) !important;
+    background: rgba(196,133,106,0.08) !important;
+}
+.nav__ig-icon { display: block; width: 17px; height: 17px; }
+
+/* Instagram in footer */
+.footer__ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.footer__ig svg { flex-shrink: 0; opacity: 0.8; }
+
+/* ── WhatsApp button — visible on dark bg ── */
+.btn--wa {
+    background: #25D366;
+    color: #fff !important;
+    border-color: #25D366;
+}
+.btn--wa:hover {
+    background: #1fba59;
+    border-color: #1fba59;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+}
+
+/* Mobile: show IG text on small screens */
+@media (max-width: 860px) {
+    .nav__ig { display: none; }
 }
