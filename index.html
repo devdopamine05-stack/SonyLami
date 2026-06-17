@@ -49,7 +49,7 @@
             <li><a href="#reviews">Отзывы</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li>
-                <a href="https://www.instagram.com/yussofia_lami/" target="_blank" class="nav__ig" aria-label="Instagram">
+                <a href="https://www.instagram.com/sofia.yussupova/" target="_blank" class="nav__ig" aria-label="Instagram">
                     <svg class="nav__ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                         <circle cx="12" cy="12" r="5"/>
@@ -81,7 +81,7 @@
         <p class="hero__sub" data-reveal>Освой профессию с нуля — от теории до первых клиентов. Онлайн и офлайн форматы.</p>
         <div class="hero__actions" data-reveal>
             <a href="#booking" class="btn btn--dark">Записаться на курс</a>
-            <a href="#portfolio" class="btn btn--ghost">Смотреть работы</a>
+            <a href="#students" class="btn btn--ghost">Смотреть работы</a>
         </div>
     </div>
     <div class="hero__right">
@@ -194,7 +194,6 @@
     </div>
 </section>
 
-
 <!-- STUDENTS WORKS -->
 <section class="students" id="students">
     <div class="container">
@@ -202,83 +201,9 @@
         <h2 class="section-title tc" data-reveal>Они уже<br><em>делают это</em></h2>
         <p class="students__lead tc" data-reveal>Мои выпускницы начинают работать с реальными клиентами уже через несколько дней после курса.</p>
 
-        <!-- ════════════════════════════════════════════════
-             КАК ДОБАВИТЬ ФОТО:
-             Раскомментируй блоки ниже, замени src на имя файла,
-             загрузи фото в репозиторий рядом с index.html.
-
-             Подпись необязательна — можно оставить только img.
-        ════════════════════════════════════════════════ -->
-
-        <!-- ════════════════════════════════════════════════
-             КАК ДОБАВИТЬ ФОТО УЧЕНИЦ:
-             Найди блок .sw-carousel__track ниже.
-             Раскомментируй sw-item блоки, замени src="s1.jpg" на имя своего файла.
-             Загрузи фото в репозиторий рядом с index.html.
-             Когда добавишь фото — удали sw-placeholder.
-        ════════════════════════════════════════════════ -->
-
         <div class="carousel sw-carousel" id="studentsCarousel">
-            <div class="carousel__track sw-carousel__track" id="studentsTrack">
-
-                <!-- Фото s1–s14 из папки media/ -->
-                <div class="sw-item">
-                    <img src="media/s1.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s2.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s3.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s4.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s5.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s6.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s7.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s8.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s9.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s10.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s11.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s12.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s13.jpg" alt="Работа ученицы">
-                </div>
-
-                <div class="sw-item">
-                    <img src="media/s14.jpg" alt="Работа ученицы">
-                </div>
-
-            </div>
+            <!-- JS заполняет этот трек автоматически из массива STUDENT_PHOTOS в script.js -->
+            <div class="carousel__track sw-carousel__track" id="studentsTrack"></div>
         </div>
     </div>
 </section>
@@ -381,26 +306,6 @@
         <p class="section-eyebrow tc" data-reveal>Отзывы</p>
         <h2 class="section-title tc" data-reveal>Что говорят<br><em>ученицы</em></h2>
 
-        <!-- ============================================================
-             КАК ДОБАВИТЬ ОТЗЫВ:
-             Скопируй блок .review-card ниже, раскомментируй и заполни.
-             rating — число от 1 до 5 (количество закрашенных звёзд)
-
-             Пример:
-             <div class="review-card" data-reveal>
-                 <div class="review-card__stars" data-rating="5"></div>
-                 <p class="review-card__text">«Текст отзыва здесь...»</p>
-                 <div class="review-card__author">
-                     <div class="review-card__avatar">А</div>
-                     <div>
-                         <div class="review-card__name">Айгерим</div>
-                         <div class="review-card__course">Комбо-курс</div>
-                     </div>
-                 </div>
-             </div>
-        ============================================================ -->
-
-        <!-- Carousel wrapper -->
         <div class="carousel" id="reviewsCarousel">
             <div class="carousel__track" id="reviewsTrack">
 
@@ -454,7 +359,7 @@
 
                 <div class="review-card">
                     <div class="review-card__stars" data-rating="5"></div>
-                    <p class="review-card__text">«Очень понравилось обучение! Всё объясняется простым языком и сразу закрепляется на практике. Благодаря этому информация действительно хорошо запоминается.»</p>
+                    <p class="review-card__text">«Очень понравилось обучение! Всё объясняется простым и понятным языком, поэтому даже новая информация воспринимается легко. Большим плюсом стало то, что теория сразу закреплялась на практике, благодаря чему все знания хорошо усваивались. Атмосфера на обучении была комфортной и спокойной, всегда можно было задать вопрос и получить подробный ответ. Спасибо за полезные знания, поддержку и уверенность, которую ты даёшь своим ученикам ❤️»</p>
                     <div class="review-card__author">
                         <div class="review-card__avatar">В</div>
                         <div>
@@ -466,7 +371,7 @@
 
                 <div class="review-card">
                     <div class="review-card__stars" data-rating="5"></div>
-                    <p class="review-card__text">«Спасибо за терпение и поддержку на протяжении всего обучения. Очень комфортная атмосфера и действительно полезные знания, которые можно сразу применять на практике ❤️»</p>
+                    <p class="review-card__text">«Спасибо за терпение и поддержку на протяжении всего обучения. Очень понравилось, что каждый этап подробно разбирался и не оставалось непонятных моментов. Атмосфера была максимально комфортной и дружелюбной, поэтому учиться было легко и приятно. После курса появилось гораздо больше уверенности в своих силах и понимания всех процессов. Спасибо за знания, внимание и помощь на каждом этапе обучения ❤️»</p>
                     <div class="review-card__author">
                         <div class="review-card__avatar">К</div>
                         <div>
@@ -478,7 +383,7 @@
 
                 <div class="review-card">
                     <div class="review-card__stars" data-rating="4"></div>
-                    <p class="review-card__text">«Обучение понравилось, материал был понятным и хорошо структурированным. Иногда хотелось немного больше времени на практику, но в целом курс оставил очень хорошие впечатления. Получила много полезной информации и стала гораздо увереннее в работе.»</p>
+                    <p class="review-card__text">«Обучение мне очень понравилось, весь материал был понятным, структурированным и хорошо поданным. Особенно ценно то, что большое внимание уделялось практике и разбору реальных ситуаций. Если возникали вопросы, на них всегда подробно отвечали и помогали разобраться. После курса я получила много полезных знаний и стала чувствовать себя намного увереннее в работе. Спасибо за профессиональный подход и поддержку ✨»</p>
                     <div class="review-card__author">
                         <div class="review-card__avatar">С</div>
                         <div>
@@ -502,12 +407,36 @@
 
                 <div class="review-card">
                     <div class="review-card__stars" data-rating="5"></div>
-                    <p class="review-card__text">«Лучшее обучение, на котором я была. Спасибо большое 🫶»</p>
+                    <p class="review-card__text">«Лучшее обучение, на котором я была. Спасибо большооое»</p>
                     <div class="review-card__author">
                         <div class="review-card__avatar">Н</div>
                         <div>
                             <div class="review-card__name">Наталья</div>
                             <div class="review-card__course">Комбо-курс</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card__stars" data-rating="5"></div>
+                    <p class="review-card__text">«Мне очень понравилось обучение, абсолютно всё было подробно, понятно и доступно объяснено. Большим плюсом стало то, что была работа на моделях и предоставлялись все необходимые материалы. Если что-то не получалось или оставались вопросы, мне спокойно объясняли всё ещё раз до полного понимания. Обучение прошло очень интересно и продуктивно, а полученные знания действительно остаются надолго. Спасибо большое за такой подход и качественное обучение ❤️»</p>
+                    <div class="review-card__author">
+                        <div class="review-card__avatar">С</div>
+                        <div>
+                            <div class="review-card__name">Самира</div>
+                            <div class="review-card__course">Комбо-курс</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card__stars" data-rating="5"></div>
+                    <p class="review-card__text">«Спасибо большое за обучение! Всё было очень интересно, понятно и без лишней воды, а занятия проходили в комфортной и приятной атмосфере. Особенно понравился индивидуальный подход, внимание к деталям и готовность ответить на любые вопросы. Во время обучения чувствовалась поддержка и заинтересованность в результате каждого ученика. После курса остались только положительные впечатления и уверенность в своих знаниях. Спасибо за полученный опыт и ценные навыки ✨»</p>
+                    <div class="review-card__author">
+                        <div class="review-card__avatar">А</div>
+                        <div>
+                            <div class="review-card__name">Альфия</div>
+                            <div class="review-card__course">Ламинирование ресниц</div>
                         </div>
                     </div>
                 </div>
@@ -525,14 +454,6 @@
             <p class="section-eyebrow" data-reveal>Вопросы и ответы</p>
             <h2 class="section-title" data-reveal>Частые<br><em>вопросы</em></h2>
             <p class="faq__hint" data-reveal>Не нашла ответ? Напиши мне в WhatsApp — отвечу быстро.</p>
-            <a href="https://www.instagram.com/yussofia_lami/" target="_blank" class="footer__ig" aria-label="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <circle cx="12" cy="12" r="5"/>
-                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-                </svg>
-                Instagram
-            </a>
             <a href="https://wa.me/77075227137?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%A1%D0%BE%D1%84%D1%8C%D1%8F%21%20%D0%AF%20%D0%BD%D0%B0%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D0%B8%D0%B7%D1%83%D1%87%D0%B0%D1%8E%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8E%20%D0%BE%20%D0%BA%D1%83%D1%80%D1%81%D0%B0%D1%85.%20%D0%95%D1%81%D1%82%D1%8C%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2%20%E2%80%94%20%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%3F" target="_blank" class="btn btn--dark" data-reveal>Написать в WhatsApp</a>
         </div>
         <div class="faq__list">
@@ -587,12 +508,9 @@
             <h2 class="section-title" data-reveal>Первый шаг<br><em>начинается здесь</em></h2>
             <div class="slots-badge" data-reveal>
                 <span class="slots-badge__dot"></span>
-                <!-- ⚠️ ОБНОВИ ЭТОТ ТЕКСТ когда изменятся места/даты: -->
-                <span>Ближайший набор: <strong>до конца месяца</strong> · осталось <strong>3 места</strong></span>
+                <span>осталось <strong>3 места</strong></span>
             </div>
             <p data-reveal>Оставь свои контакты — я свяжусь для бесплатной консультации и расскажу всё подробнее.</p>
-            <p class="booking__or" data-reveal>Или напиши напрямую:</p>
-            <a href="https://wa.me/77075227137?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%A1%D0%BE%D1%84%D1%8C%D1%8F%21%20%D0%AF%20%D0%BD%D0%B0%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D0%B2%D1%81%D1%91%20%D0%B8%D0%B7%D1%83%D1%87%D0%B8%D0%BB%D0%B0%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5.%20%D0%9D%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D0%B2%D0%BD%D0%B5%D1%81%D1%82%D0%B8%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%83." target="_blank" class="btn btn--wa" data-reveal>WhatsApp</a>
         </div>
         <div class="booking__form-wrap" data-reveal>
             <form class="booking__form" id="bookingForm" novalidate>
@@ -630,8 +548,12 @@
                 <div class="booking__error" id="errorMsg" hidden>
                     Что-то пошло не так. Напиши напрямую в <a href="https://wa.me/77075227137?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%A1%D0%BE%D1%84%D1%8C%D1%8F%21%20%D0%AF%20%D0%BD%D0%B0%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5.">WhatsApp</a>.
                 </div>
+            
             </form>
+            
         </div>
+            <!-- <p class="booking__or" data-reveal>Или напиши напрямую:</p> -->
+            <a href="https://wa.me/77075227137?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%A1%D0%BE%D1%84%D1%8C%D1%8F%21%20%D0%AF%20%D0%BD%D0%B0%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D0%B2%D1%81%D1%91%20%D0%B8%D0%B7%D1%83%D1%87%D0%B8%D0%BB%D0%B0%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5.%20%D0%9D%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D0%B2%D0%BD%D0%B5%D1%81%D1%82%D0%B8%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%83." target="_blank" class="btn btn--wa" data-reveal>WhatsApp</a>
     </div>
 </section>
 
@@ -643,6 +565,14 @@
             <span class="footer__tagline">Обучение ламинированию бровей и ресниц · Актау</span>
         </div>
         <nav class="footer__links">
+            <a href="https://www.instagram.com/sofia.yussupova/" target="_blank" class="footer__ig" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="5"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+                Instagram
+            </a>
             <a href="https://wa.me/77075227137?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%A1%D0%BE%D1%84%D1%8C%D1%8F%21%20%D0%AF%20%D0%BD%D0%B0%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5." target="_blank">WhatsApp</a>
             <a href="#about">Обо мне</a>
             <a href="#courses">Курсы</a>
