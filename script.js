@@ -346,6 +346,65 @@ const btnLoad   = submitBtn?.querySelector('.btn-loading');
 const successEl = document.getElementById('successMsg');
 const errorEl   = document.getElementById('errorMsg');
 
+// ── Поле телефона: формат +77XXXXXXXXX (12 символов) ────────────────
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+    // Нормализует введённое значение в формат +77XXXXXXXXX
+    function normalizePhone(raw) {
+        // Оставляем только цифры
+        let digits = raw.replace(/\D/g, '');
+
+        // Если начинается с 8 — заменяем на 7
+        if (digits.startsWith('8')) digits = '7' + digits.slice(1);
+
+        // Обрезаем до 11 цифр (7 + 10 остальных)
+        digits = digits.slice(0, 11);
+
+        return digits.length ? '+' + digits : '';
+    }
+
+    function applyFormat(e) {
+        const prev   = phoneInput.value;
+        const cursor = phoneInput.selectionStart;
+        const formatted = normalizePhone(prev);
+        if (formatted !== prev) {
+            phoneInput.value = formatted;
+            // Восстанавливаем курсор с поправкой на разницу длин
+            const diff = formatted.length - prev.length;
+            phoneInput.setSelectionRange(cursor + diff, cursor + diff);
+        }
+    }
+
+    // Блокируем буквы и спецсимволы кроме + в начале
+    phoneInput.addEventListener('keypress', e => {
+        if (e.key.length !== 1) return;
+        // Разрешаем + только если поле пустое или всё выделено
+        if (e.key === '+' && phoneInput.selectionStart === 0) return;
+        if (!/[0-9]/.test(e.key)) e.preventDefault();
+    });
+
+    // Форматируем при любом изменении
+    phoneInput.addEventListener('input', applyFormat);
+
+    // Вставка из буфера
+    phoneInput.addEventListener('paste', e => {
+        e.preventDefault();
+        const pasted = (e.clipboardData || window.clipboardData).getData('text');
+        phoneInput.value = pasted;
+        applyFormat();
+    });
+
+    // При фокусе: если пусто — ставим +7 как подсказку
+    phoneInput.addEventListener('focus', () => {
+        if (!phoneInput.value) phoneInput.value = '+7';
+    });
+
+    // При потере фокуса: если только +7 осталось — очищаем
+    phoneInput.addEventListener('blur', () => {
+        if (phoneInput.value === '+7') phoneInput.value = '';
+    });
+}
+
 form?.addEventListener('submit', async e => {
     e.preventDefault();
     successEl.hidden = true; errorEl.hidden = true;
@@ -354,17 +413,35 @@ form?.addEventListener('submit', async e => {
     const phone  = form.phone.value.trim();
     const course = form.course.value;
 
-    if (!name || !phone) {
-        const bad = name ? form.phone : form.name;
-        bad.style.borderColor = '#e53935';
-        bad.focus();
-        bad.addEventListener('input', () => bad.style.borderColor = '', { once: true });
-        return;
+    // Валидация: имя не пустое, телефон = +77XXXXXXXXX (12 символов)
+    const phoneValid = /^\+77\d{9}$/.test(phone);
+
+    if (!name) {
+        markError(form.name); return;
+    }
+    if (!phoneValid) {
+        markError(form.phone, 'Формат: +77075227137'); return;
     }
 
     setLoad(true);
     const now  = new Date().toLocaleString('ru-RU', { timeZone:'Asia/Oral', day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
-    const text = `🌸 <b>Новая заявка!</b>\n━━━━━━━━━━━━━━━━━━━━\n👤 <b>Имя:</b> ${esc(name)}\n📱 <b>Телефон:</b> ${esc(phone)}\n📚 <b>Курс:</b> ${esc(course)}\n━━━━━━━━━━━━━━━━━━━━\n⏰ <i>${now}</i>`;
+
+    // Для WA ссылки: убираем + (wa.me ожидает чистые цифры)
+    const phoneDigits = phone.replace('+', ''); // → 77075227137
+
+    // WhatsApp ссылка для быстрой связи с клиентом прямо из Telegram
+    const waReply = `https://wa.me/${phoneDigits}?text=${encodeURIComponent(
+        `Здравствуйте, ${name}! Вы оставляли заявку на обучение у Софьи Юсуповой — курс «${course}». Готова ответить на все вопросы и уточнить удобное время. Когда вам удобно начать? 🌸`
+    )}`;
+
+    const text =
+        `🌸 <b>Новая заявка!</b>\n` +
+        `\n` +
+        `👤 <b>Имя:</b> ${esc(name)}\n` +
+        `📱 <b>Телефон:</b> ${esc(phone)}\n` +
+        `📞 <b>WhatsApp:</b> <a href="${waReply}">Написать клиенту →</a>\n` +
+        `📚 <b>Курс:</b> ${esc(course)}\n` +
+        `⏰ <i>${now}</i>`;
 
     const results = await Promise.allSettled(TG_RECIPIENTS.map(id => sendTG(id, text)));
     setLoad(false);
@@ -389,6 +466,17 @@ function setLoad(on) {
     if (submitBtn) submitBtn.disabled = on;
     if (btnText)   btnText.hidden     = on;
     if (btnLoad)   btnLoad.hidden     = !on;
+}
+
+function markError(input, msg) {
+    input.style.borderColor = '#e53935';
+    input.focus();
+    if (msg) {
+        input.setCustomValidity(msg);
+        input.reportValidity();
+        setTimeout(() => input.setCustomValidity(''), 3000);
+    }
+    input.addEventListener('input', () => { input.style.borderColor = ''; input.setCustomValidity(''); }, { once: true });
 }
 
 
